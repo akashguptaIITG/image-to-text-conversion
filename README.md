@@ -6,11 +6,11 @@ A simple api integrating google's cloud vision api for image to text conversion
 
 ### POST /api/image 
 
-request
+- request
 body: {
 "image":"your image in base64"
 }
-response:
+- response:
 {
 data:"text detected in the image"
 }
