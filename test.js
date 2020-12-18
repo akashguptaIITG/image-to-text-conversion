@@ -13,6 +13,7 @@ async function init() {
     const [result] = await client.textDetection(filePath);
     const detections = result.textAnnotations;
     console.log(`Text in ${fileName}: ${detections[0].description}`);
+    console.log(detections);
   }
 }
 
