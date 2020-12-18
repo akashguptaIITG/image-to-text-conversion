@@ -8,6 +8,19 @@ A simple integration of google's cloud vision api for image to text conversion
 
 - request
   body: {
+  "image":"your image in base64 or url"
+  }
+- response:
+  {
+  data:"array of words detected in the image"
+  }
+
+### deployed api endpoint: http://52.73.243.18:3000/api/gcp/imageToText
+
+### POST /api/aws/imageToText
+
+- request
+  body: {
   "image":"your image in base64"
   }
 - response:
@@ -15,6 +28,6 @@ A simple integration of google's cloud vision api for image to text conversion
   data:"array of words detected in the image"
   }
 
-### deployed api endpoint: http://52.73.243.18:3000/api/gcp/imageToTexte
+### deployed api endpoint: http://52.73.243.18:3000/api/aws/imageToText
 
-- for local testing googles vision api key is required for authentication and must be created in config folder
+- for local testing googles vision and aws api key is required for authentication and must be created in config folder
