@@ -1,6 +1,6 @@
 # image-to-text-conversion
 
-A simple integration of google's cloud vision api for image to text conversion
+A simple integration of google's cloud vision and AWS Rekognition api for image to text conversion
 
 ## Api End point (port 3000)
 
