@@ -87,8 +87,10 @@ route.post("/api/aws/imageToText", async (req, res) => {
     if (validator.default.isBase64(imgData)) {
       imgOption = { Image: { Bytes: Buffer.from(imgData, "base64") } };
     } else {
-      res.status(400).json({ data: "Unsupported data, image must be base64" });
-      return;
+      imgOption = {
+        Image: { S3Object: { Bucket: "image-to-text-poc", Name: imgData } },
+      };
+      // res.status(400).json({ data: "Unsupported data, image must be base64" });
     }
     const result = await client.detectText(imgOption);
     const detections = result.TextDetections;
