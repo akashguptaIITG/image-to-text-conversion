@@ -49,8 +49,7 @@ route.post("/api/gcp/imageToText", async (req, res) => {
     let textData = "no text found";
     let statusCode = 422;
     if (detections[0]) {
-      textData = detections.map((d) => d.description);
-      textData.shift();
+      textData = detections[0].description;
       statusCode = 200;
     } else if (result.error) {
       textData = result.error;
@@ -96,8 +95,11 @@ route.post("/api/aws/imageToText", async (req, res) => {
     const detections = result.TextDetections;
     let textData = "no text found";
     let statusCode = 422;
-    if (detections) {
-      textData = detections.map((d) => d.DetectedText);
+    if (detections[0]) {
+      textData = detections
+        .map((d) => (d.Type === "LINE" ? d.DetectedText : null))
+        .filter((fd) => fd !== null && fd !== undefined)
+        .join("\n");
       statusCode = 200;
     }
     console.log(`Text: ${textData}`);

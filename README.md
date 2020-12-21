@@ -12,7 +12,7 @@ A simple integration of google's cloud vision and AWS Rekognition api for image 
   }
 - response:
   {
-  data:"array of words detected in the image"
+  data:"text detected in the image"
   }
 
 ### deployed api endpoint: http://52.73.243.18:3000/api/gcp/imageToText
@@ -25,7 +25,7 @@ A simple integration of google's cloud vision and AWS Rekognition api for image 
   }
 - response:
   {
-  data:"array of words detected in the image"
+  data:"text detected in the image"
   }
 
 ### deployed api endpoint: http://52.73.243.18:3000/api/aws/imageToText
