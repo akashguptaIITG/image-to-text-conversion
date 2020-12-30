@@ -9,8 +9,13 @@ export default function App({ navigation }) {
         width: 300,
         height: 400,
         cropping: true,
+        freeStyleCropEnabled: true,
+        mediaType: 'photo',
+        includeBase64: true,
+        compressImageQuality: 0.5,
+      
       });
-      console.log(image);
+      navigation.navigate('TextRecognition', { image });
     } catch (error) {
       console.error(error);
     }
