@@ -1,46 +1,23 @@
-import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
-import { Camera } from "expo-camera";
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import ImagePicker from 'react-native-image-crop-picker';
 
 export default function App({ navigation }) {
-  const [hasPermission, setHasPermission] = useState(null);
-  const [type, setType] = useState(Camera.Constants.Type.back);
-  const cameraRef = useRef();
-
-  const onPictureSaved = async (image) => {
-    console.log("onPictureSaved");
-    navigation.navigate("TextRecognition", { image });
-  };
   const snap = async () => {
-    if (cameraRef) {
-      await cameraRef.current.takePictureAsync({
-        onPictureSaved,
-        base64: true,
-        quality: 0.3,
+    try {
+      const image = await ImagePicker.openCamera({
+        width: 300,
+        height: 400,
+        cropping: true,
       });
+      console.log(image);
+    } catch (error) {
+      console.error(error);
     }
   };
-  useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
-      setHasPermission(status === "granted");
-    })();
-  }, []);
 
-  if (hasPermission === null) {
-    return <View />;
-  }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
   return (
     <View style={styles.container}>
-      <Camera
-        style={styles.camera}
-        type={type}
-        ref={cameraRef}
-        autoFocus={true}
-      ></Camera>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={snap}>
           <Text style={styles.text}> Capture </Text>
@@ -58,19 +35,24 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    backgroundColor: "lightblue",
+    backgroundColor: 'lightblue',
     borderWidth: 1,
-    flexDirection: "row",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     margin: 20,
+    marginHorizontal: 130,
+    width: 100,
+    height: 100,
+    borderRadius: 40,
   },
   button: {
     flex: 1,
-    alignSelf: "flex-end",
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 30,
   },
   text: {
     fontSize: 24,
-    color: "black",
+    color: 'black',
   },
 });
