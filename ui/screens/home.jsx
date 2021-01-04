@@ -17,7 +17,7 @@ export default function App({ navigation }) {
       await ImagePicker.clean();
       navigation.navigate('TextRecognition', { image });
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
   const openPicker = async () => {
@@ -34,7 +34,7 @@ export default function App({ navigation }) {
       await ImagePicker.clean();
       navigation.navigate('TextRecognition', { image });
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 
